@@ -16,24 +16,6 @@ Por exemplo, o mesmo usuário que possui sua basbearia e utiliza o celular, com 
 usufruir abertamente da tecnologia, sem maiores problemas de compatibilidade, dependendo apenas da sua conexão com a internet.
 ```
 
-### 🔧 Utilização
-
-Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.
-
-Diga como essa etapa será:
-
-```
-Dar exemplos
-```
-
-E repita:
-
-```
-Até finalizar
-```
-
-Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.
-
 ## 📦 Implantação
 
 Adicione notas adicionais sobre como implantar isso em um sistema ativo
@@ -42,10 +24,11 @@ Adicione notas adicionais sobre como implantar isso em um sistema ativo
 
 Mencione as ferramentas que você usou para criar seu projeto
 
-* ...
-* ...
-* ...
-
+* HTML
+* JS
+* REACT
+*
+*
 
 ## 📌 Versão
 
