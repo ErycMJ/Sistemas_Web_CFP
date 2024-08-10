@@ -29,7 +29,7 @@ Adicione notas adicionais sobre como implantar isso em um sistema ativo
    <img align="center" alt="html5" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
 </div>
 
-## 📌 Versão
+## 📌 Controle de versão
 
 <div style="display: inline_block"><br/>
    <img align="center" alt="html5" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
