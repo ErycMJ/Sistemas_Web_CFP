@@ -22,24 +22,35 @@ Adicione notas adicionais sobre como implantar isso em um sistema ativo
 
 ## 🛠️ Construído com
 
-Mencione as ferramentas que você usou para criar seu projeto
-
-* HTML
-* JS
-* REACT
-*
-*
+<div style="display: inline_block"><br/>
+   <img align="center" alt="html5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=whit"/>
+   <img align="center" alt="html5" src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+   <img align="center" alt="html5" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
+   <img align="center" alt="html5" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+</div>
 
 ## 📌 Versão
 
-Nós usamos (...) para controle de versão.
+<div style="display: inline_block"><br/>
+   <img align="center" alt="html5" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
+</div>
 
 ## ✒️ Autores
 
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
+* https://github.com/ErycMJ
+* https://github.com/ribarski
+* https://github.com/taylorteixeira
+* https://github.com/VitorLidorio
 
 ## 📄 Licença
 
-Este projeto está sob a licença (sua licença)
+### Concessão de licença
+Nós, Eryc, Taylor, Eduardo e Vitor concedemos a você, o usuário final, uma licença não exclusiva, intransferível e revogável para usar, modificar, e distribuir o projeto CFP, incluindo o código-fonte, documentação e outros arquivos associados.
 
-## 🎁 Expressões de gratidão
+### Você não pode:
+* Redistribuir: Vender ou redistribuir o projeto ou partes dele como um produto separado.
+* Reverter Engenharia: Descompilar, desmontar ou realizar engenharia reversa no projeto, exceto quando permitido pela lei aplicável.
+* Responsabilidade: Utilizar o projeto de maneira que viole qualquer lei ou regulamento aplicável.
+
+### Lei aplicável
+Esta licença será regida e interpretada de acordo com as leis do [Seu Estado/País], sem considerar seus princípios de conflito de leis.
