@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
 import { TbLogout } from "react-icons/tb";
 import { BiSolidCategory } from "react-icons/bi"
-import string from '../../String';
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -52,8 +51,8 @@ const Navbar = () => {
                   {currentUser.user.username}
                 </span>
                 <img
-                  className="rounded-full h-7 w-7 object-cover sm:h-10 sm:w-10"
-                  src={`${string}${currentUser.user.avatar}`}
+                  className="rounded-full h-6  w-7 "
+                  src='../../../public/user.png'
                   alt="profile"
                 />
               </button>

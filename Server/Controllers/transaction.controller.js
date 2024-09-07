@@ -130,16 +130,26 @@ export const deleteTransaction = catchAsyncError(async (req, res) => {
 });
 
 export const getRecentTransactions = catchAsyncError(async (req, res) => {
-  // Fetch the most recent 10 transactions, sorted by date (latest first)
-  const recentTransactions = await Transaction.find()
+  // Verifique se o usuário está autenticado
+  if (!req.user || !req.user._id) {
+    return res.status(401).json({
+      success: false,
+      message: "User not authenticated",
+    })
+  }
+
+  // Busca as transações mais recentes do usuário autenticado
+  const recentTransactions = await Transaction.find({ createdBy: req.user._id })
     .sort({ date: -1 })
-    .limit(5);
+    .limit(5)
 
   res.status(200).json({
     success: true,
     transactions: recentTransactions,
-  });
-});
+  })
+})
+
+
 
 export const spendingCategories = catchAsyncError(async (req, res) => {
   // Aggregate total spending per category
