@@ -5,7 +5,6 @@ import { CgProfile } from "react-icons/cg";
 import { PiUserList } from "react-icons/pi"
 
 import { TbLogout } from "react-icons/tb";
-import { BiSolidCategory } from "react-icons/bi"
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -30,14 +29,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="bg-green-200 shadow-md py-4">
+    <header className={`${currentUser ? 'bg-white' : 'bg-green-200'} shadow-md py-4`}>
       <div className="flex justify-between items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Left Section */}
-        <div className="flex items-center flex-shrink-0">
-          <Link to="/faqs" className="text-2xl font-bold text-green-800">
-            CFP
-          </Link>
-        </div>
+        <div className="flex items-center flex-shrink-0"></div>
 
         {/* Center Section */}
         {currentUser ? (
@@ -45,21 +40,9 @@ const Navbar = () => {
             <div className="hidden md:flex space-x-4">
               <Link
                 to="/dashboard"
-                className="hover:text-green-500 text-green-800 text-xl font-medium"
+                className="text-green-800 text-xl font-medium"
               >
-                Dashboard
-              </Link>
-              <Link
-                to="/transaction"
-                className="hover:text-green-500 text-green-800 text-xl font-medium"
-              >
-                Transações
-              </Link>
-              <Link
-                to="/category"
-                className="hover:text-green-500 text-green-800 text-xl font-medium"
-              >
-                Categorias
+                Bem vindo ao Controle de finacias,
               </Link>
             </div>
           </>
@@ -93,37 +76,6 @@ const Navbar = () => {
                     >
                       <CgProfile className="text-2xl flex-grow" />
                       <span className="mx-auto flex-none w-3/4">Perfil</span>
-                    </Link>
-                    <Link
-                      to="/category"
-                      className="flex rounded-lg px-4 py-2 text-md font-medium text-green-800 hover:bg-green-100 hover:text-gray-700"
-                      role="menuitem"
-                      onClick={() => setDropdownOpen(false)}
-                    >
-                      <BiSolidCategory className="text-2xl flex-grow" />
-                      <span className="mx-auto flex-none w-3/4">
-                        Categorias
-                      </span>
-                    </Link>
-                    <Link
-                      to="/dashboard"
-                      className="flex rounded-lg px-4 py-2 text-md font-medium text-green-800 hover:bg-green-100 hover:text-gray-700"
-                      role="menuitem"
-                      onClick={() => setDropdownOpen(false)}
-                    >
-                      <BiSolidCategory className="text-2xl flex-grow" />
-                      <span className="mx-auto flex-none w-3/4">Dashboard</span>
-                    </Link>
-                    <Link
-                      to="/transaction"
-                      className="flex rounded-lg px-4 py-2 text-md font-medium text-green-800 hover:bg-green-100 hover:text-gray-700"
-                      role="menuitem"
-                      onClick={() => setDropdownOpen(false)}
-                    >
-                      <BiSolidCategory className="text-2xl flex-grow" />
-                      <span className="mx-auto flex-none w-3/4">
-                        Transações
-                      </span>
                     </Link>
                     <Link
                       to="/signout"
