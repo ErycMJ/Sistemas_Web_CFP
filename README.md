@@ -40,7 +40,6 @@ Adicione notas adicionais sobre como implantar isso em um sistema ativo
 * https://github.com/ErycMJ
 * https://github.com/ribarski
 * https://github.com/taylorteixeira
-* https://github.com/VitorLidorio
 
 ## 📄 Licença
 
