@@ -15,7 +15,7 @@ import Transaction from "./Componets/Private/Transaction"
 import Category from "./Componets/Private/Category"
 import Sidebar from "./Componets/Layout/Sidebar" // Importando Sidebar
 import { useState } from "react"
-import ChatModal from "./Componets/Layout/ChatModal" // Importando o ChatModal
+import ChatModal from "./Componets/Layout/ChatModal" // Importar o ChatModal
 
 const App = () => {
   const { currentUser } = useSelector((state) => state.user)
@@ -37,7 +37,7 @@ const App = () => {
 
             <main
               className={`flex-grow transition-all duration-300 ${
-                currentUser ? "ml-40" : ""
+                currentUser ? "ml-16" : ""
               }`}
             >
               <Routes>
@@ -93,7 +93,7 @@ const App = () => {
           <ChatModal
             isOpen={isChatOpen}
             onClose={toggleChat}
-            user={currentUser}
+            isLoggedIn={!!currentUser}
           />
         </div>
       </BrowserRouter>

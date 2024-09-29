@@ -9,6 +9,8 @@ import transactionRoutes from "./Routes/transaction.route.js"
 import { errorMiddleware } from "./Middlewares/error.js"
 import path from "path"
 import { fileURLToPath } from "url"
+import chatRoutes from "./Routes/chat.routes.js"
+
 
 const app = express()
 dotenv.config()
@@ -34,6 +36,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 app.use("/user", userRoutes)
 app.use("/category", categoryRoutes)
 app.use("/transaction", transactionRoutes)
+app.use("/chat", chatRoutes)
+
 
 
 mongoose
