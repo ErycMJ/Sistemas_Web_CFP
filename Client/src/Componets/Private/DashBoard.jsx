@@ -1,6 +1,20 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { LineChart, Line, Tooltip, ResponsiveContainer } from "recharts"
+import {
+  LineChart,
+  Line,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+} from "recharts"
 import string from "../../String"
 
 // Fetch account summary data (balance, income, expenses)
@@ -34,7 +48,7 @@ const fetchAccountSummary = async () => {
   }
 }
 
-const fetchCategories = async (setCategories) => {
+const fetchCategories = async () => {
   try {
     const { data } = await axios.get(`${string}/category/getCategory`, {
       headers: {
@@ -42,9 +56,10 @@ const fetchCategories = async (setCategories) => {
       },
       withCredentials: true,
     })
-    setCategories(data)
+    return data
   } catch (error) {
     console.error("Error fetching categories:", error)
+    return []
   }
 }
 
@@ -99,6 +114,7 @@ const Dashboard = () => {
   const [recentTransactions, setRecentTransactions] = useState([])
   const [categories, setCategories] = useState([])
   const [spendingTrends, setSpendingTrends] = useState([])
+  const [categoryData, setCategoryData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,7 +129,17 @@ const Dashboard = () => {
       const trendsData = await fetchSpendingTrendsData()
       setSpendingTrends(trendsData)
 
-      await fetchCategories(setCategories) // Fetch categories
+      const categoriesData = await fetchCategories() // Fetch categories
+      setCategories(categoriesData)
+
+      // Create category data for pie chart
+      const categorySummary = categoriesData.map((category) => {
+        const total = transactions
+          .filter((transaction) => transaction.category === category._id)
+          .reduce((acc, transaction) => acc + transaction.amount, 0)
+        return { name: category.categoryName, value: total }
+      })
+      setCategoryData(categorySummary)
     }
 
     fetchData()
@@ -126,21 +152,30 @@ const Dashboard = () => {
   }, {})
 
   return (
-    <div className="p-4 m-4 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-green-800 mb-4">Dashboard</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="p-6 m-4 bg-white rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold text-green-800 mb-4">Dashboard</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Account Summary */}
-        <div className="p-4 rounded-lg shadow-lg bg-green-50">
+        <div className="p-4 rounded-lg shadow-lg bg-green-100">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
             Account Summary
           </h3>
-          <p className="text-lg">Total Balance: $ {balance}</p>
-          <p className="text-lg">Total Income: $ {income}</p>
-          <p className="text-lg">Total Expenses: $ {expense}</p>
+          <div className="flex justify-between mb-2">
+            <p className="text-lg">Total Balance:</p>
+            <p className="text-lg font-bold text-green-600">${balance}</p>
+          </div>
+          <div className="flex justify-between mb-2">
+            <p className="text-lg">Total Income:</p>
+            <p className="text-lg font-bold text-green-600">${income}</p>
+          </div>
+          <div className="flex justify-between mb-2">
+            <p className="text-lg">Total Expenses:</p>
+            <p className="text-lg font-bold text-red-600">${expense}</p>
+          </div>
         </div>
 
         {/* Recent Transactions */}
-        <div className="p-4 rounded-lg shadow-lg bg-green-50">
+        <div className="p-4 rounded-lg shadow-lg bg-green-100">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
             Recent Transactions
           </h3>
@@ -149,8 +184,17 @@ const Dashboard = () => {
               <li key={index} className="mb-2">
                 <p>
                   {new Date(transaction.date).toDateString().slice(4)}:{" "}
-                  {transaction.description} - ${transaction.amount} (
-                  {categoryLookup[transaction.category] || "Unknown Category"})
+                  {transaction.description} - $
+                  <span
+                    className={
+                      transaction.type === "expense"
+                        ? "text-red-600"
+                        : "text-green-600"
+                    }
+                  >
+                    {transaction.amount}
+                  </span>{" "}
+                  ({categoryLookup[transaction.category] || "Unknown Category"})
                 </p>
               </li>
             ))}
@@ -158,16 +202,64 @@ const Dashboard = () => {
         </div>
 
         {/* Spending Trends */}
-        <div className="p-4 rounded-lg shadow-lg bg-green-50">
+        <div className="p-4 rounded-lg shadow-lg bg-green-100">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
             Spending Trends
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={spendingTrends}>
-              <Line type="monotone" dataKey="expenses" stroke="#82ca9d" />
-              <Line type="monotone" dataKey="income" stroke="#8884d8" />
+              <Line type="monotone" dataKey="expenses" stroke="#ff4c4c" />
+              <Line type="monotone" dataKey="income" stroke="#4caf50" />
               <Tooltip />
             </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Expense Categories Pie Chart */}
+        <div className="p-4 rounded-lg shadow-lg bg-green-100 col-span-1 md:col-span-2">
+          <h3 className="text-xl font-semibold text-green-800 mb-2">
+            Expense Categories
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={categoryData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#82ca9d"
+                label
+              >
+                {categoryData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={
+                      entry.value > 0 ? `hsl(${index * 36}, 100%, 50%)` : "#ccc"
+                    }
+                  />
+                ))}
+              </Pie>
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Bar Chart for Income and Expense Comparison */}
+        <div className="p-4 rounded-lg shadow-lg bg-green-100 col-span-1 md:col-span-2 lg:col-span-1">
+          <h3 className="text-xl font-semibold text-green-800 mb-2">
+            Income vs Expenses
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={spendingTrends}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="income" fill="#4caf50" />
+              <Bar dataKey="expenses" fill="#ff4c4c" />
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
