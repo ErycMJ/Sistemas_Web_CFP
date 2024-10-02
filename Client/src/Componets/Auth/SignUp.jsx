@@ -44,7 +44,8 @@ const SignUp = () => {
   return (
     <>
         <div className='p-7 max-w-lg mx-auto bg-green-200 my-10 rounded-2xl'>
-            <h1 className='text-3xl text-center text-green-800 font-semibold my-5'>Sign Up  </h1>
+            <h1 className='text-3xl text-center text-green-800 font-semibold my-5'>
+            Inscrever-se </h1>
             <form className='flex flex-col gap-4'>
                 <input
                     type='text'
@@ -79,14 +80,16 @@ const SignUp = () => {
                 <button onClick={handleSubmit}                    
                     className='bg-green-800 text-white p-3 rounded-lg text-2xl font-bold hover:opacity-90 disabled:opacity-80 my-2'
                     >
-                    Sign Up
+                    
+Inscrever-se
                 </button>
                 <span className='text-center text-green-800 text-sm font-medium'>OR</span>
             </form>
             <div className='flex gap-2 mt-5 justify-center'>
                 <p>Already have an account?</p>
                 <Link to={'/signin'}>
-                    <span className='text-blue-700'>Sign In</span>
+                    <span className='text-blue-700'>
+                    Inscrever-se</span>
                 </Link>
             </div>
         </div>

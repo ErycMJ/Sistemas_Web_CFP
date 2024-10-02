@@ -158,18 +158,18 @@ const Dashboard = () => {
         {/* Account Summary */}
         <div className="p-4 rounded-lg shadow-lg bg-green-100">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
-            Account Summary
+          Resumo da conta
           </h3>
           <div className="flex justify-between mb-2">
-            <p className="text-lg">Total Balance:</p>
+            <p className="text-lg">Saldo total:</p>
             <p className="text-lg font-bold text-green-600">${balance}</p>
           </div>
           <div className="flex justify-between mb-2">
-            <p className="text-lg">Total Income:</p>
+            <p className="text-lg">Renda total:</p>
             <p className="text-lg font-bold text-green-600">${income}</p>
           </div>
           <div className="flex justify-between mb-2">
-            <p className="text-lg">Total Expenses:</p>
+            <p className="text-lg">Despesas totais:</p>
             <p className="text-lg font-bold text-red-600">${expense}</p>
           </div>
         </div>
@@ -177,7 +177,7 @@ const Dashboard = () => {
         {/* Recent Transactions */}
         <div className="p-4 rounded-lg shadow-lg bg-green-100">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
-            Recent Transactions
+          Transações recentes
           </h3>
           <ul>
             {recentTransactions.map((transaction, index) => (
@@ -204,7 +204,7 @@ const Dashboard = () => {
         {/* Spending Trends */}
         <div className="p-4 rounded-lg shadow-lg bg-green-100">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
-            Spending Trends
+          Tendências de gastos
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={spendingTrends}>
@@ -218,7 +218,7 @@ const Dashboard = () => {
         {/* Expense Categories Pie Chart */}
         <div className="p-4 rounded-lg shadow-lg bg-green-100 col-span-1 md:col-span-2">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
-            Expense Categories
+          Categorias de despesas
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -249,7 +249,7 @@ const Dashboard = () => {
         {/* Bar Chart for Income and Expense Comparison */}
         <div className="p-4 rounded-lg shadow-lg bg-green-100 col-span-1 md:col-span-2 lg:col-span-1">
           <h3 className="text-xl font-semibold text-green-800 mb-2">
-            Income vs Expenses
+          Receita vs Despesas
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={spendingTrends}>

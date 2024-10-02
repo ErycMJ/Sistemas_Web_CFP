@@ -94,12 +94,13 @@ const Navbar = () => {
             <>
               <Link to="/signup">
                 <div className="bg-green-800 px-5 py-3 rounded-3xl text-white mx-2 hover:bg-green-700">
-                  <button className="text-lg">Sign Up</button>
+                  <button className="text-lg">
+                  Inscrever-se</button>
                 </div>
               </Link>
               <Link to="/signin">
                 <div className="bg-green-800 px-5 py-3 rounded-3xl text-white mx-2 hover:bg-green-700">
-                  <button className="text-lg">Sign In</button>
+                  <button className="text-lg">Login</button>
                 </div>
               </Link>
             </>

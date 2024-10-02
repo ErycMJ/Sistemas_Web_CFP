@@ -214,7 +214,7 @@ const TransactionModal = () => {
           className="bg-black bg-opacity-50 fixed inset-0 flex justify-center items-center z-50"
         >
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-lg font-medium mb-4">Add Transaction</h3>
+            <h3 className="text-lg font-medium mb-4">Adicionar transação</h3>
             <div className="flex justify-between">
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">
@@ -226,7 +226,7 @@ const TransactionModal = () => {
                   onChange={handleChange}
                   className="px-3 py-2 border border-gray-300 rounded-md w-full"
                 >
-                  <option defaultValue={true}>Select Type</option>
+                  <option defaultValue={true}>Selecione</option>
                   <option value="expense">Despesa</option>
                   <option value="income">Ganhos</option>
                   {/* <option value="transfer">Transfer</option> */}
@@ -234,7 +234,7 @@ const TransactionModal = () => {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">
-                  Date
+                  Data
                 </label>
                 <input
                   type="date"
@@ -256,7 +256,7 @@ const TransactionModal = () => {
                   onChange={handleChange}
                   className="px-3 py-2 border border-gray-300 rounded-md w-full"
                 >
-                  <option value="">Select Category</option>
+                  <option value="">Selecione a categoria</option>
                   {categories.map((category) => (
                     <option key={category._id} value={category._id}>
                       {category.categoryName}
@@ -270,7 +270,7 @@ const TransactionModal = () => {
                 <div className="flex justify-between">
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">
-                      Transfer To
+                    Transferir para
                     </label>
                     <select
                       name="transferTo"
@@ -288,7 +288,7 @@ const TransactionModal = () => {
                   </div>
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">
-                      Transfer From
+                    Transferir de
                     </label>
                     <select
                       name="transferFrom"
@@ -296,7 +296,7 @@ const TransactionModal = () => {
                       onChange={handleChange}
                       className="px-3 py-2 border border-gray-300 rounded-md w-full"
                     >
-                      <option value="">Select User</option>
+                      <option value="">Selecione o usuário</option>
                     </select>
                   </div>
                 </div>
@@ -353,18 +353,18 @@ const TransactionModal = () => {
                 onChange={handleChange}
                 className="px-3 py-2 border border-gray-300 rounded-md w-full"
               >
-                <option value="never">Never</option>
-                <option value="oneD">One Day</option>
-                <option value="twoD">Two Days</option>
-                <option value="workD">Work Days</option>
-                <option value="oneW">One Week</option>
-                <option value="twoW">Two Weeks</option>
-                <option value="fourW">Four Weeks</option>
-                <option value="oneM">One Month</option>
-                <option value="twoM">Two Months</option>
-                <option value="threeM">Three Months</option>
-                <option value="sixM">Six Months</option>
-                <option value="oneY">One Year</option>
+               <option value="never">Nunca</option>
+                <option value="oneD">Um dia</option>
+                <option value="twoD">Dois dias</option>
+                <option value="workD">Dias úteis</option>
+                <option value="oneW">Uma semana</option>
+                <option value="twoW">Duas semanas</option>
+                <option value="fourW">Quatro semanas</option>
+                <option value="oneM">Um mês</option>
+                <option value="twoM">Dois meses</option>
+                <option value="threeM">Três meses</option>
+                <option value="sixM">Seis meses</option>
+                <option value="oneY">Um ano</option>
               </select>
             </div>
             {formData.recurrence !== "never" ? (
@@ -372,7 +372,7 @@ const TransactionModal = () => {
                 <div className="flex justify-between">
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">
-                      End Date
+                    Data de término
                     </label>
                     <input
                       type="date"
@@ -384,7 +384,7 @@ const TransactionModal = () => {
                   </div>
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">
-                      Remind Date
+                    Lembrar data
                     </label>
                     <input
                       type="date"
@@ -402,13 +402,13 @@ const TransactionModal = () => {
                 onClick={handleAddTransaction}
                 className="bg-green-800 px-5 py-3 rounded-3xl text-white hover:bg-green-700 mr-2"
               >
-                Add
+                Adicionar
               </button>
               <button
                 onClick={() => setShowAddTransactionForm(false)}
                 className="bg-red-600 px-5 py-3 rounded-3xl text-white hover:bg-red-500"
               >
-                Cancel
+                Cancelar
               </button>
             </div>
           </div>

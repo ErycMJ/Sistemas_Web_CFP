@@ -24,10 +24,10 @@ export const Profile = () => {
 
   return (<>
   <div className="max-w-xl mx-auto mt-10 p-5 bg-green-50 shadow-xl rounded-lg m-10">
-  <h2 className="text-3xl font-semibold text-center mb-5 text-green-800">Profile</h2>
+  <h2 className="text-3xl font-semibold text-center mb-5 text-green-800">Perfil</h2>
     <div className="profile-details-update">
       <div className="mb-5">
-        <label className="block text-lg font-medium mb-2 text-green-800">Username</label>
+        <label className="block text-lg font-medium mb-2 text-green-800">Nome de usuário</label>
         <input
           type="text"
           value={username}
@@ -39,7 +39,7 @@ export const Profile = () => {
         onClick={handleUpdateProfileDetails}
         className="w-full bg-green-800 text-white py-2 rounded-md mb-3 hover:bg-green-700"
       >
-        Update Profile
+       Atualizar perfil
       </button>
     </div>
     </div></>

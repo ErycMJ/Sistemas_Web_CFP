@@ -139,14 +139,14 @@ const Category = () => {
               onClick={() => setShowAddCategoryForm(true)}
               className="bg-green-800 px-5 py-3 rounded-3xl text-white hover:bg-green-700"
             >
-              Add Category
+              Adicionar categoria
             </button>
           </div>
 
         {showAddCategoryForm && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div ref={formRef} className="bg-white p-6 rounded-lg shadow-lg z-50 mx-auto w-96 max-w-md">
-              <h3 className="mb-4 text-xl font-medium text-green-800 hover:bg-green-700">Add Category</h3>
+              <h3 className="mb-4 text-xl font-medium text-green-800 hover:bg-green-700">Adicionar categoria</h3>
               <div className="flex flex-col space-y-4 mb-4">
                 <input
                   type="text"
@@ -162,9 +162,9 @@ const Category = () => {
                   onChange={handleChange}
                   className="px-3 py-2 border border-gray-300 rounded-md"
                 >
-                  <option selected disabled>Category Type</option>
-                  <option value="income">Income</option>
-                  <option value="expense">Expense</option>
+                  <option selected disabled>Tipo de categoria</option>
+                  <option value="income">Renda</option>
+                  <option value="expense">Despesa</option>
                 </select>
                 <button
                   onClick={handleAddCategory}
@@ -180,7 +180,7 @@ const Category = () => {
         {showEditCategoryForm && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div ref={formRef} className="bg-white p-6 rounded-lg shadow-lg z-50 w-full max-w-md">
-              <h3 className="mb-4 text-lg font-medium text-green-800">Edit Category</h3>
+              <h3 className="mb-4 text-lg font-medium text-green-800">Editar categoria</h3>
               <div className="flex flex-col space-y-4 mb-4">
                 <input
                   type="text"
@@ -196,9 +196,9 @@ const Category = () => {
                   onChange={handleChange}
                   className="px-3 py-2 border border-gray-300 rounded-md"
                 >
-                  <option defaultValue={true} disabled>Category Type</option>
-                  <option value="income">Income</option>
-                  <option value="expense">Expense</option>
+                  <option defaultValue={true} disabled>Tipo de categoria</option>
+                  <option value="income">Renda</option>
+                  <option value="expense">Despesa</option>
                 </select>
                 <button
                   onClick={handleEditCategory}
@@ -214,20 +214,20 @@ const Category = () => {
         {showDeleteConfirmation && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div ref={formRef} className="bg-white p-6 rounded-lg shadow-lg z-50 w-full max-w-md">
-              <h3 className="mb-4 text-lg font-medium text-green-800">Delete Category</h3>
-              <p>Are you sure you want to delete this category?</p>
+              <h3 className="mb-4 text-lg font-medium text-green-800">Excluir categoria</h3>
+              <p>Tem certeza de que deseja excluir esta categoria?</p>
               <div className="flex justify-end space-x-4 mt-4">
                 <button
                   onClick={() => setShowDeleteConfirmation(false)}
                   className="px-4 py-2 bg-gray-300 rounded-md"
                 >
-                  Cancel
+                  Cancelar
                 </button>
                 <button
                   onClick={handleDeleteCategory}
                   className="px-4 py-2 bg-red-600 text-white rounded-md"
                 >
-                  Delete
+                  Deletar
                 </button>
               </div>
             </div>
