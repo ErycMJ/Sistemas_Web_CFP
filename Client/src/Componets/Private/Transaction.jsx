@@ -726,7 +726,7 @@ useEffect(() => {
                 </div>
               </>
             ) : null}
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
               Foto
               </label>
@@ -736,7 +736,7 @@ useEffect(() => {
                 onChange={handlePhotoChange}
                 className="px-3 py-2 border border-gray-300 rounded-md w-full"
               />
-            </div>
+            </div> */}
             <div className="flex justify-end">
               <button
                 onClick={handleEditTransaction}
