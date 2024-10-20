@@ -1,38 +1,59 @@
-import { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { CgProfile } from "react-icons/cg";
+import { useState, useEffect, useRef } from "react"
+import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { CgProfile } from "react-icons/cg"
 import { PiUserList } from "react-icons/pi"
-
-import { TbLogout } from "react-icons/tb";
+import { TbLogout } from "react-icons/tb"
 
 const Navbar = () => {
-  const { currentUser } = useSelector((state) => state.user);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const { currentUser } = useSelector((state) => state.user)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef(null)
 
   const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+    setDropdownOpen(!dropdownOpen)
+  }
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdownOpen(false);
+      setDropdownOpen(false)
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   return (
-    <header className={`${currentUser ? 'bg-white' : 'bg-green-200'} shadow-md py-4`}>
+    <header
+      className={`${currentUser ? "bg-white" : "bg-green-200"} shadow-md py-4`}
+    >
       <div className="flex justify-between items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Left Section */}
-        <div className="flex items-center flex-shrink-0"></div>
+        <div></div>
+        {currentUser ? null : (
+          <>
+            <div className="flex flex-col items-center">
+              <Link to="/">
+                <h2 className="text-2xl font-bold text-green-800">
+                  Controle de Finanças
+                </h2>
+              </Link>
+              <span className="text-gray-600 text-xs mt-1">
+                <a
+                  href="https://taylor-teixeira.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  powered by T&T
+                </a>
+              </span>
+            </div>
+          </>
+        )}
 
         {/* Center Section */}
         {currentUser ? (
@@ -42,7 +63,7 @@ const Navbar = () => {
                 to="/dashboard"
                 className="text-green-800 text-xl font-medium"
               >
-                Bem vindo ao Controle de finacias,
+                Bem-vindo ao Controle de Finanças,
               </Link>
             </div>
           </>
@@ -94,8 +115,7 @@ const Navbar = () => {
             <>
               <Link to="/signup">
                 <div className="bg-green-800 px-5 py-3 rounded-3xl text-white mx-2 hover:bg-green-700">
-                  <button className="text-lg">
-                  Inscrever-se</button>
+                  <button className="text-lg">Inscrever-se</button>
                 </div>
               </Link>
               <Link to="/signin">
@@ -109,6 +129,6 @@ const Navbar = () => {
       </div>
     </header>
   )
-};
+}
 
-export default Navbar;
+export default Navbar
