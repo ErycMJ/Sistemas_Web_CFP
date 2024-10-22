@@ -4,19 +4,34 @@ import { Link } from "react-router-dom"
 import { CgProfile } from "react-icons/cg"
 import { PiUserList } from "react-icons/pi"
 import { TbLogout } from "react-icons/tb"
+import { AiOutlineBell } from "react-icons/ai"
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [notificationDropdownOpen, setNotificationDropdownOpen] =
+    useState(false)
+  const [notifications] = useState(2) // Exemplo com 3 notificações
   const dropdownRef = useRef(null)
+  const notificationDropdownRef = useRef(null)
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen)
   }
 
+  const toggleNotificationDropdown = () => {
+    setNotificationDropdownOpen(!notificationDropdownOpen)
+  }
+
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setDropdownOpen(false)
+    }
+    if (
+      notificationDropdownRef.current &&
+      !notificationDropdownRef.current.contains(event.target)
+    ) {
+      setNotificationDropdownOpen(false)
     }
   }
 
@@ -82,6 +97,49 @@ const Navbar = () => {
                 </span>
                 <PiUserList className="text-3xl flex-grow text-green-800" />
               </button>
+              {/* Ícone de Notificação */}
+              <div className="relative mx-2">
+                <button
+                  onClick={toggleNotificationDropdown}
+                  className="relative"
+                >
+                  <AiOutlineBell className="text-3xl text-green-800" />
+                  {notifications > 0 && (
+                    <span className="absolute top-0 right-0 h-4 w-4 bg-red-600 text-white rounded-full text-xs flex items-center justify-center">
+                      {notifications}
+                    </span>
+                  )}
+                </button>
+                {notificationDropdownOpen && (
+                  <div
+                    ref={notificationDropdownRef}
+                    className="absolute right-0 mt-8 w-64 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+                    role="menu"
+                  >
+                    <div className="py-1" role="none">
+                      {notifications > 0 ? (
+                        <>
+                          <p className="px-4 py-2 text-md text-green-800">
+                            Você tem {notifications} novas notificações.
+                          </p>
+                          <Link
+                            to="/notifications"
+                            className="flex rounded-lg px-4 py-2 text-md font-medium text-green-800 hover:bg-green-100 hover:text-gray-700"
+                            role="menuitem"
+                            onClick={() => setNotificationDropdownOpen(false)}
+                          >
+                            Ver todas as notificações
+                          </Link>
+                        </>
+                      ) : (
+                        <p className="px-4 py-2 text-md text-green-800">
+                          Nenhuma nova notificação.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
               {dropdownOpen && (
                 <div
                   ref={dropdownRef}
