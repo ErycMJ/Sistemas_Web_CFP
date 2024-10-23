@@ -13,6 +13,7 @@ import Dashboard from "./Componets/Private/DashBoard"
 import { useSelector } from "react-redux"
 import Transaction from "./Componets/Private/Transaction"
 import Category from "./Componets/Private/Category"
+import GoalLimitModal from "./Componets/Private/GoalLimitModal"
 import Sidebar from "./Componets/Layout/Sidebar" // Importando Sidebar
 import { useState } from "react"
 import ChatModal from "./Componets/Layout/ChatModal" // Importar o ChatModal
@@ -53,6 +54,7 @@ const App = () => {
                   <Route path="/category" element={<Category />} />
                   <Route path="/transaction" element={<Transaction />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/goals-limits" element={<GoalLimitModal />} />
                   <Route path="/Signout" element={<SignOut />} />
                 </Route>
               </Routes>

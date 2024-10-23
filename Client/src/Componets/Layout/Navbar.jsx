@@ -4,14 +4,15 @@ import { Link } from "react-router-dom"
 import { CgProfile } from "react-icons/cg"
 import { PiUserList } from "react-icons/pi"
 import { TbLogout } from "react-icons/tb"
-import { AiOutlineBell } from "react-icons/ai"
+import { FaBell } from 'react-icons/fa'; // Importando o ícone de notificação
+
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [notificationDropdownOpen, setNotificationDropdownOpen] =
     useState(false)
-  const [notifications] = useState(2) // Exemplo com 3 notificações
+  const [notifications] = useState(0) // Exemplo com 3 notificações
   const dropdownRef = useRef(null)
   const notificationDropdownRef = useRef(null)
 
@@ -92,18 +93,18 @@ const Navbar = () => {
                 onClick={toggleDropdown}
                 className="flex items-center relative"
               >
-                <span className="text-green-800 text-xl mx-2 font-medium hidden sm:block">
-                  {currentUser.user.username}
+                <span className="text-green-800 text-xl mx-3 font-medium hidden sm:block">
+                  <i className="text-lg">@</i>{currentUser.user.username}
                 </span>
-                <PiUserList className="text-3xl flex-grow text-green-800" />
+                <PiUserList className="text-4xl flex-grow text-green-800 " />
               </button>
               {/* Ícone de Notificação */}
-              <div className="relative mx-2">
+              <div className="relative mx-3">
                 <button
                   onClick={toggleNotificationDropdown}
                   className="relative"
                 >
-                  <AiOutlineBell className="text-3xl text-green-800" />
+                  <FaBell className="text-2xl text-green-800 mt-1" />
                   {notifications > 0 && (
                     <span className="absolute top-0 right-0 h-4 w-4 bg-red-600 text-white rounded-full text-xs flex items-center justify-center">
                       {notifications}
@@ -173,7 +174,7 @@ const Navbar = () => {
             <>
               <Link to="/signup">
                 <div className="bg-green-800 px-5 py-3 rounded-3xl text-white mx-2 hover:bg-green-700">
-                  <button className="text-lg">Inscrever-se</button>
+                  <button className="text-lg">Inscrever</button>
                 </div>
               </Link>
               <Link to="/signin">

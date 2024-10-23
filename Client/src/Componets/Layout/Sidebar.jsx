@@ -95,6 +95,7 @@ const Sidebar = () => {
         <Link to="/faqs" className="text-white hover:text-gray-300">
           <AiOutlineInfoCircle className="text-xl" />
         </Link>
+        
       </div>
     </aside>
   )
