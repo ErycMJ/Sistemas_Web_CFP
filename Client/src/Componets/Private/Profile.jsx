@@ -112,10 +112,10 @@ export const Profile = () => {
             onChange={(e) => setTransactionData(e.target.value)}
             rows={10}
             placeholder="Cole os dados aqui como no exemplo asseguir: (Descrição	Valor	Data
-Comanda: 78913240 - Gorjeta	R$ 10,00	13/01/2024
-Comanda: 79997072 - Gorjeta	R$ 10,00	26/01/2024
-Comanda: 86102210 - Gorjeta	R$ 5,00	19/03/2024
-Comanda: 89129403 - Gorjeta	R$ 5,00	15/04/2024)"
+Comanda: 78913240	R$ 10,00	13/01/2024
+Comanda: 79997072	R$ 10,00	26/01/2024
+Comanda: 86102210	R$ 5,00	19/03/2024
+Comanda: 89129403	R$ 5,00	15/04/2024)"
 
             className="w-full border border-gray-300 rounded-md p-2 mb-5"
           />

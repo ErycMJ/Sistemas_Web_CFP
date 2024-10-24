@@ -162,15 +162,15 @@ const Dashboard = () => {
           </h3>
           <div className="flex justify-between mb-2">
             <p className="text-lg">Saldo total:</p>
-            <p className="text-lg font-bold text-green-600">${balance}</p>
+            <p className="text-lg font-bold">R$ {balance}</p>
           </div>
           <div className="flex justify-between mb-2">
             <p className="text-lg">Renda total:</p>
-            <p className="text-lg font-bold text-green-600">${income}</p>
+            <p className="text-lg font-bold text-green-600">R$ {income}</p>
           </div>
           <div className="flex justify-between mb-2">
             <p className="text-lg">Despesas totais:</p>
-            <p className="text-lg font-bold text-red-600">${expense}</p>
+            <p className="text-lg font-bold text-red-600">R$ {expense}</p>
           </div>
         </div>
 
@@ -184,7 +184,7 @@ const Dashboard = () => {
               <li key={index} className="mb-2">
                 <p>
                   {new Date(transaction.date).toDateString().slice(4)}:{" "}
-                  {transaction.description} - $
+                  {transaction.description} - R$ 
                   <span
                     className={
                       transaction.type === "expense"
@@ -194,7 +194,7 @@ const Dashboard = () => {
                   >
                     {transaction.amount}
                   </span>{" "}
-                  ({categoryLookup[transaction.category] || "Unknown Category"})
+                  ({categoryLookup[transaction.category] || "Dado Importado"})
                 </p>
               </li>
             ))}

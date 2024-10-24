@@ -15,7 +15,7 @@ const ChatModal = ({ isOpen, onClose, isLoggedIn }) => {
       setLoading(true)
 
       try {
-        const response = await axios.post(`${string}/chat`, {
+        const response = await axios.post(`${string}/chat/send`, {
           message,
         })
 
@@ -123,7 +123,7 @@ const ChatModal = ({ isOpen, onClose, isLoggedIn }) => {
               Não salvaremos o histórico de mensagens.
             </p>
             <button
-              className="bg-green-600 text-white py-2 px-4 rounded w-full"
+              className="bg-green-600 text-white py-2 px-4 rounded w-full "
               onClick={handleSendMessage}
               disabled={!message || loading}
             >

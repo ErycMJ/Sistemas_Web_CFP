@@ -72,7 +72,7 @@ const App = () => {
 
           {/* Botão Flutuante de Chat */}
           <button
-            className="fixed bottom-4 right-4 bg-green-800 text-white p-3 rounded-full shadow-lg"
+            className="fixed bottom-4 right-4 bg-green-800 text-white p-3 rounded-full shadow-lg animate-pulse"
             onClick={toggleChat}
           >
             <svg

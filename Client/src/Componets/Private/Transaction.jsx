@@ -217,7 +217,7 @@ useEffect(() => {
 
   const getCategoryNameById = (id) => {  
     const category = categoriesTransaction.find((category) => category._id === id);  
-    return category ? category.categoryName : 'Unknown Category';
+    return category ? category.categoryName : "Dado Importado"
   };
 
   const handleFilterChange = () => {

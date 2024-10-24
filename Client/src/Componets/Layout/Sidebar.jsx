@@ -63,12 +63,18 @@ const Sidebar = () => {
               </span>
             </Link>
           </li>
-          <li>
+          <li className="relative">
             <Link
               to="/transaction"
               className="flex items-center space-x-2 text-white hover:bg-green-600 px-6 py-3 rounded-lg transition-all duration-300"
             >
               <FaExchangeAlt className="text-2xl" />
+              <span
+                className='relative'
+              >
+                {/* Bolinha amarela responsiva */}
+                <span className="absolute top-0 right-0 h-2 w-2 sm:h-3 sm:w-3 bg-yellow-500 rounded-full"></span>
+              </span>
               <span className={`${isMinimized ? "hidden" : "block"}`}>
                 Transações
               </span>
@@ -95,7 +101,6 @@ const Sidebar = () => {
         <Link to="/faqs" className="text-white hover:text-gray-300">
           <AiOutlineInfoCircle className="text-xl" />
         </Link>
-        
       </div>
     </aside>
   )
