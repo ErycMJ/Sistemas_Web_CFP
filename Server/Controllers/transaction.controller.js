@@ -129,6 +129,53 @@ export const deleteTransaction = catchAsyncError(async (req, res) => {
   });
 });
 
+export const importTransactions = catchAsyncError(async (req, res, next) => {
+  const { transactions } = req.body; // Expecting an array of transactions
+  
+  if (!Array.isArray(transactions) || transactions.length === 0) {
+    return next(new ErrorHandler("No transaction data provided"));
+  }
+
+  const createdBy = req.user.id;
+  const newTransactions = [];
+
+  for (const transaction of transactions) {
+    const { type, category, note, amount, currency, date } = transaction;
+
+    // Ensure necessary details are filled
+    if (!type || !category || !note || !amount || !currency || !date) {
+      return next(new ErrorHandler("Please fill in all necessary transaction details"));
+    }
+
+    const newTransaction = {
+      type: type || 'desconhecido',
+      category: category || 'desconhecido',
+      note: note,
+      amount: amount,
+      currency: currency,
+      date: new Date(date), // Ensure date is a Date object
+      createdBy: createdBy,
+      recurrence: null, // Default recurrence to null; adjust as needed
+      end: null, // Default end to null; adjust as needed
+      remind: null, // Default remind to null; adjust as needed
+      transferTo: null, // Default transferTo to null; adjust as needed
+      transferFrom: null, // Default transferFrom to null; adjust as needed
+    };
+
+    newTransactions.push(newTransaction);
+  }
+
+  // Save all transactions at once
+  await Transaction.insertMany(newTransactions);
+
+  res.status(201).json({
+    success: true,
+    message: "Transactions imported successfully",
+    transactions: newTransactions,
+  });
+});
+
+
 export const getRecentTransactions = catchAsyncError(async (req, res) => {
   // Verifique se o usuário está autenticado
   if (!req.user || !req.user._id) {
