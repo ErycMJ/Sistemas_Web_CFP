@@ -10,6 +10,7 @@ export const Profile = () => {
   const { currentUser } = useSelector((state) => state.user)
   const [username, setUsername] = useState(currentUser.user.username)
   const [transactionData, setTransactionData] = useState("") // Estado para dados de transações
+  const [transactionType, setTransactionType] = useState("income") // Novo estado para tipo de transação
 
   const handleUpdateProfileDetails = async () => {
     try {
@@ -27,54 +28,82 @@ export const Profile = () => {
     }
   }
 
- const handleImportTransactions = async () => {
-   // Processar os dados colados
-   const lines = transactionData.trim().split("\n")
-   const transactions = []
+  const handleImportTransactions = async () => {
+    const lines = transactionData.trim().split("\n")
+    const transactions = []
+    const errorLines = []
 
-   for (const line of lines) {
-     const [description, value, date] = line.split("\t") // Usando tabulação como delimitador
-     const amount = parseFloat(value.replace("R$", "").replace(",", ".").trim()) // Convertendo para número
-     const dateParts = date.trim().split("/") // Dividindo a data em partes (DD/MM/AAAA)
-     const parsedDate = new Date(
-       `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}T00:00:00`
-     ) // Convertendo a data para formato ISO
+    // Loop para processar cada linha, ignorando o cabeçalho se for detectado
+    for (const [index, line] of lines.entries()) {
+      if (
+        index === 0 &&
+        line.toLowerCase().includes("descrição") &&
+        line.toLowerCase().includes("valor") &&
+        line.toLowerCase().includes("data")
+      ) {
+        continue // Ignora o cabeçalho e passa para a próxima linha
+      }
 
-     // Verificar se os dados estão válidos
-     if (!description || isNaN(amount) || isNaN(parsedDate.getTime())) {
-       toast.error("Dados inválidos na linha: " + line)
-       continue // Ignorar linha inválida
-     }
+      const [description, value, dateTime] = line.split("\t")
+      const amount = parseFloat(
+        value.replace("R$", "").replace(",", ".").trim()
+      )
 
-     transactions.push({
-       type: "income", // Definido como 'desconhecido'
-       category: "66dc68fbc3f858aa58b6465d", // Definido como 'desconhecido'
-       note: description.trim(),
-       amount,
-       currency: "BRL", // Moeda padrão
-       date: parsedDate.toISOString(), // Armazenar a data em formato ISO
-     })
-   }
+      // Separando data e hora
+      const [date, time] = dateTime.trim().split(" ")
+      const dateParts = date.split("/")
 
-   // Enviar os dados formatados para o backend
-   try {
-     const { data } = await axios.post(
-       `${string}/transaction/import`,
-       { transactions },
-       {
-         withCredentials: true,
-       }
-     )
-     toast.success(data.message)
-     setTransactionData("") // Limpar campo após importação
-   } catch (error) {
-     toast.error(
-       error.response
-         ? error.response.data.message
-         : "Erro ao importar transações"
-     )
-   }
- }
+      // Verificando a validade da data antes de converter
+      if (dateParts.length !== 3) {
+        errorLines.push(index + 1)
+        continue
+      }
+
+      // Criando a data sem incluir a hora
+      const parsedDate = new Date(
+        `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}T00:00:00`
+      )
+
+      // Validando os dados da transação
+      if (!description || isNaN(amount) || isNaN(parsedDate.getTime())) {
+        errorLines.push(index + 1)
+        continue
+      }
+
+      transactions.push({
+        type: transactionType, // Usa o tipo de transação selecionado
+        category: "66dc68fbc3f858aa58b6465d",
+        note: description.trim(),
+        amount,
+        currency: "BRL",
+        date: parsedDate.toISOString().split("T")[0], // Apenas a data em formato ISO
+      })
+    }
+
+    // Exibindo mensagens de erro se houver linhas com problemas
+    if (errorLines.length) {
+      toast.error(`Erro nas linhas: ${errorLines.join(", ")}`)
+      return
+    }
+
+    try {
+      const { data } = await axios.post(
+        `${string}/transaction/import`,
+        { transactions },
+        {
+          withCredentials: true,
+        }
+      )
+      toast.success(data.message)
+      setTransactionData("") // Limpar campo de texto após importação bem-sucedida
+    } catch (error) {
+      toast.error(
+        error.response
+          ? error.response.data.message
+          : "Erro ao importar transações"
+      )
+    }
+  }
 
   return (
     <>
@@ -107,16 +136,31 @@ export const Profile = () => {
           <h3 className="text-2xl font-semibold text-center mb-5 text-green-800">
             Importar Transações
           </h3>
+
+          {/* Seletor para tipo de transação */}
+          <div className="transaction-type-selector mb-5">
+            <label className="block text-lg font-medium mb-2 text-green-800">
+              Tipo de Transação
+            </label>
+            <select
+              value={transactionType}
+              onChange={(e) => setTransactionType(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            >
+              <option value="income">Receita</option>
+              <option value="expense">Despesa</option>
+            </select>
+          </div>
+
           <textarea
             value={transactionData}
             onChange={(e) => setTransactionData(e.target.value)}
             rows={10}
-            placeholder="Cole os dados aqui como no exemplo asseguir: (Descrição	Valor	Data
+            placeholder="Cole os dados aqui como no exemplo a segior (Descrição	Valor	Data
 Comanda: 78913240	R$ 10,00	13/01/2024
 Comanda: 79997072	R$ 10,00	26/01/2024
 Comanda: 86102210	R$ 5,00	19/03/2024
 Comanda: 89129403	R$ 5,00	15/04/2024)"
-
             className="w-full border border-gray-300 rounded-md p-2 mb-5"
           />
           <button
