@@ -8,7 +8,7 @@ import { MdOutlineAddTask } from "react-icons/md" // Ícone para adicionar metas
 import TransactionModal from "../Private/TransactionModal" // Import the TransactionModal
 
 const Sidebar = () => {
-  const [isMinimized, setIsMinimized] = useState(false)
+  const [isMinimized, setIsMinimized] = useState(true)
 
   const toggleSidebar = () => {
     setIsMinimized(!isMinimized)

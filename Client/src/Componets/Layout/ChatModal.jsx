@@ -70,35 +70,7 @@ const ChatModal = ({ isOpen, onClose, isLoggedIn }) => {
           )}
         </div>
 
-        {/* Content based on active tab */}
-        {activeTab === "support" && (
-          <div>
-            <div className="h-40 overflow-y-auto border p-2 mb-2">
-              <div className="text-sm text-gray-600">
-                Seja bem-vindo ao suporte! Como podemos ajudar?
-              </div>
-            </div>
-
-            <input
-              type="text"
-              placeholder="Escreva sua mensagem..."
-              className="w-full border rounded p-2 mb-2"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <p className="text-red-600 text-sm mb-2">
-              Salvaremos o histórico por 30 dias.
-            </p>
-            <button
-              className="bg-green-600 text-white py-2 px-4 rounded w-full"
-              onClick={handleSendMessage}
-              disabled={!message || loading}
-            >
-              {loading ? "Enviando..." : "Enviar"}
-            </button>
-          </div>
-        )}
-
+        
         {activeTab === "ia" && isLoggedIn && (
           <div>
             <div className="h-40 overflow-y-auto border p-2 mb-2">
